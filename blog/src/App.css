@@ -1,4 +1,29 @@
+.hidden {
+  display: none;
+}
+
 h1,
 form {
   text-align: center;
+}
+
+input {
+  height: 30px;
+  width: 250px;
+  margin-right: 10px;
+  background: #f4f4f4;
+  border: none;
+}
+
+button {
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+}
+
+.result {
+  text-align: center;
+  margin-top: 16px;
+  font-weight: 600;
+  font-size: 24px;
 }
