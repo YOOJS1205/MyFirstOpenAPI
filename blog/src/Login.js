@@ -24,7 +24,6 @@ const Login = () => {
         info.id = Email;
         navigate('/');
     }
-    console.log(info);
 
     return (
         <div className='container'>
