@@ -1,0 +1,28 @@
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 800px;
+  height: 600px;
+  border: 1px solid black;
+}
+
+.modal_login-form {
+  height: 200px;
+}
+
+.modal_login-form button,
+.modal_login-form input {
+  display: block;
+  margin: 0 auto;
+}
+
+.modal_login-form input:nth-child(2) {
+  margin-top: 20px;
+}
+
+.modal_login-form button {
+  margin-top: 65px;
+  width: 254px;
+}
