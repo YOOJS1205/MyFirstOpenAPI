@@ -1,28 +1,23 @@
-import { useDispatch } from "react-redux";
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
-const dispatch = useDispatch();
-
 // Action
-const CLICK_LOGIN = 'CLICK_LOGIN';
+const OPEN = 'OPEN';
 
 // Initial State
-var initialInfo = {
-    isLogin: false,
-    id: ''
+const initialState = {
+    isOpen: false
 }
+
+// Action 생성 함수
+export const clickOpen = () => ({ type: OPEN });
 
 // Reducer
-export default function reducer(currentState = initialInfo, action) {
-    if (action.type === CLICK_LOGIN) {
-        var newInfo = {...initialInfo, isLogin: true}
-        return newInfo;
+export default function modalReducer(state = initialState, action) {
+    switch (action.type) {
+        case OPEN:
+            return {
+                ...state,
+                isOpen: !state.isOpen
+            };
+        default:
+            return state
     }
-    else {
-        return currentState;
-    }
-}
-
-export function clickLogin() {
-    return () => {dispatch({type: 'CLICK_LOGIN'})}
 }

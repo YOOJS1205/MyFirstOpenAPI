@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import './App.css';
+import Modal from './components/Modal';
 
 function App() {
   // OPEN API
@@ -29,13 +30,16 @@ function App() {
   }
 
   // Redux States
-  const userInfo = useSelector((currentState) => currentState);
+  var { isLogin, id } = useSelector(state => ({
+    isLogin: state.loginReducer.isLogin,
+    id: state.loginReducer.id
+}))
 
   return (
     <div className="App">
       <div className='login'>
-        <div className={userInfo.isLogin ? 'greeting' : 'greeting hidden'}>{userInfo.id}님 반갑습니다!</div>
-        <div className='login_button'><Link to='/login'>{userInfo.isLogin ? '로그아웃' : '로그인'}</Link></div>
+        <div className={isLogin ? 'greeting' : 'greeting hidden'}>{id}님 반갑습니다!</div>
+        <div className='login_button'><Link to='/login'>{isLogin ? '로그아웃' : '로그인'}</Link></div>
       </div>
       <h1>댕댕이에게 멋진 이름 선물하기</h1>
       <form>
@@ -57,6 +61,7 @@ function App() {
           </div>
         )
       })}
+      <Modal />
     </div>
   );
 }
