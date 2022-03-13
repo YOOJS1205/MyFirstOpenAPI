@@ -39,7 +39,7 @@ const Modal = () => {
     const onClickLogin = () => dispatch(clickLogin())
 
     return (
-        <div className={isOpen ? 'modal' : 'modal hidden'}>
+        <div className={isOpen ? 'modal fadeIn' : 'modal hidden'}>
             <h2>Welcome!</h2>
             <form className='modal_login-form' onSubmit={onSubmitHandler}>
                 <input className='email' type='email' placeholder='이메일을 입력하세요...'
