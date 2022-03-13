@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { clickOpen } from './redux_modules/Modal';
 import axios from 'axios';
 import './App.css';
 import Modal from './components/Modal';
@@ -29,17 +29,26 @@ function App() {
     setSearchTerm(e.target.value);
   }
 
-  // Redux States
+  // Redux States (Login)
   var { isLogin, id } = useSelector(state => ({
     isLogin: state.loginReducer.isLogin,
     id: state.loginReducer.id
-}))
+  }))
+
+  // Redux (Modal)
+  const dispatch = useDispatch();
+
+  const { isOpen } = useSelector(state => ({
+    isOpen: state.modalReducer.isOpen
+  }))
+
+  const onClickLogin = () => dispatch(clickOpen())
 
   return (
     <div className="App">
       <div className='login'>
         <div className={isLogin ? 'greeting' : 'greeting hidden'}>{id}님 반갑습니다!</div>
-        <div className='login_button'><Link to='/login'>{isLogin ? '로그아웃' : '로그인'}</Link></div>
+        <div className='login_button' onClick={onClickLogin}>{isLogin ? '로그아웃' : '로그인'}</div>
       </div>
       <h1>댕댕이에게 멋진 이름 선물하기</h1>
       <form>

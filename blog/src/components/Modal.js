@@ -6,13 +6,20 @@ import '../styles/modal.css';
 
 const Modal = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
+    // login redux
     var { isLogin, id } = useSelector(state => ({
         isLogin: state.loginReducer.isLogin,
         id: state.loginReducer.id
-    }))
-    const dispatch = useDispatch();
+    }));
 
+    // modal redux
+    const { isOpen } = useSelector(state => ({
+        isOpen: state.modalReducer.isOpen
+      }));
+    
+    // form states
     const [Email, setEmail] = useState('');
     const [Password, setPassword] = useState('');
 
@@ -29,12 +36,10 @@ const Modal = () => {
         navigate('/');
     }
 
-    console.log(isLogin, id);
-
     const onClickLogin = () => dispatch(clickLogin())
 
     return (
-        <div className='modal'>
+        <div className={isOpen ? 'modal' : 'modal hidden'}>
             <h2>Welcome!</h2>
             <form className='modal_login-form' onSubmit={onSubmitHandler}>
                 <input className='email' type='email' placeholder='이메일을 입력하세요...'
