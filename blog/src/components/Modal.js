@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { clickLogin } from '../redux_modules/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import '../styles/modal.css';
 
 const Modal = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     // login redux
@@ -13,6 +11,8 @@ const Modal = () => {
         isLogin: state.loginReducer.isLogin,
         id: state.loginReducer.id
     }));
+
+    const onClickLogin = () => dispatch(clickLogin())
 
     // modal redux
     const { isOpen } = useSelector(state => ({
@@ -33,13 +33,10 @@ const Modal = () => {
 
     const onSubmitHandler = () => {
         id = Email
-        navigate('/');
     }
 
-    const onClickLogin = () => dispatch(clickLogin())
-
     return (
-        <div className={isOpen ? 'modal fadeIn' : 'modal hidden'}>
+        <div className={isOpen && !isLogin ? 'modal fadeIn' : 'modal hidden'}>
             <h2>Welcome!</h2>
             <form className='modal_login-form' onSubmit={onSubmitHandler}>
                 <input className='email' type='email' placeholder='이메일을 입력하세요...'
@@ -47,7 +44,7 @@ const Modal = () => {
                 <input type='password' placeholder='비밀번호를 입력하세요...' 
                        required value={Password} onChange={onPasswordHandler} />
                 <button type='submit'
-                        onClick={onClickLogin}>로그인</button>
+                        onClick={onClickLogin}>{isLogin ? '로그아웃' : '로그인'}</button>
             </form>
         </div>
     )
